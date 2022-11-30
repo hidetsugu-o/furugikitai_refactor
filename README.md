@@ -3,10 +3,12 @@
 ## init
 ```
 // ちょっと時間かかる
-docker-compose --build
+docker-compose up --build
 ```
 
 ## 構成
+```
 backend　laravel
 frontend　next.js (typescript)
 db　mariadb
+```
