@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+  mariadb:
+    image: mariadb:10.6
+    ports: 
+      - 23306:3306
+    environment:
+      - TZ=Asia/Tokyo
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=furugi_local
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=password
+
+  backend:
+    image: docker.io/bitnami/laravel:9
+    ports:
+      - '8000:8000'
+    environment:
+      - DB_HOST=mariadb
+      - DB_PORT=3306
+      - DB_USERNAME=bn_myapp
+      - DB_DATABASE=bitnami_myapp
+    volumes:
+      - './backend/:/app'
+    depends_on:
+      - mariadb
+
+  frontend:
+    build:
+      context: ./frontend/
+      dockerfile: ./Dockerfile
+    volumes:
+      - ./frontend:/usr/src/app/next
+    ports:
+      - '3030:3000'
