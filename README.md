@@ -6,9 +6,10 @@
 docker-compose up --build
 ```
 
+
 ## 構成
 ```
-backend　laravel
-frontend　next.js (typescript)
-db　mariadb
+backend　laravel localhost:8000
+frontend　next.js (typescript) localhost:3030 
+db　mariadb localhost:23306
 ```
